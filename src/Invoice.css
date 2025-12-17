@@ -1,0 +1,598 @@
+:root {
+    /* Default palette */
+    --primary-purple: #5e2a84;
+    --primary-blue: #009fe3;
+    --accent-yellow: #fec200;
+    --text-dark: #1a1a1a;
+    --text-grey: #4a4a4a;
+    --border-color: #ddd;
+    --accent-orange: #ff6b00;
+    /* Distinct Orange */
+    --accent-orange: #ff6b00;
+    /* Distinct Orange */
+}
+
+.invoice-container {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    .invoice-container {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* =========================================
+   COMMON LAYOUT
+   ========================================= */
+.header {
+    position: relative;
+    height: 120px;
+    background-color: white;
+    display: flex;
+}
+
+.content {
+    padding: 40px;
+    flex: 1;
+}
+
+.recipient-section {
+    margin-bottom: 40px;
+}
+
+.recipient-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.recipient-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.recipient-address {
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.invoice-meta {
+    float: right;
+    width: 300px;
+    margin-top: -80px;
+}
+
+.meta-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.meta-label {
+    font-weight: 500;
+}
+
+.meta-value {
+    font-weight: 400;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.invoice-table th {
+    padding: 12px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.invoice-table td {
+    padding: 15px 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.col-date {
+    width: 15%;
+    text-align: center;
+}
+
+.col-desc {
+    width: 40%;
+}
+
+.col-price {
+    width: 15%;
+    text-align: right;
+}
+
+.col-qty {
+    width: 10%;
+    text-align: center;
+}
+
+.col-amount {
+    width: 20%;
+    text-align: right;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.totals-section {
+    width: 400px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 14px;
+    align-items: center;
+}
+
+.total-label {
+    flex: 1;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.total-currency {
+    width: 30px;
+}
+
+.total-value {
+    width: 100px;
+    text-align: right;
+}
+
+.footer-section {
+    margin-top: auto;
+    padding: 0 40px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+}
+
+.terms-box {
+    padding: 15px;
+    width: 55%;
+    font-size: 12px;
+}
+
+.terms-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bank-details {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2px;
+}
+
+.signature-section {
+    text-align: center;
+    width: 200px;
+}
+
+.stamp-placeholder {
+    height: 80px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.signer-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 5;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================
+   THEME: DEFAULT (COLORFUL)
+   ========================================= */
+
+.theme-default .header-bg-purple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100%;
+    background-color: var(--primary-purple);
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px;
+    color: white;
+}
+
+.theme-default .header-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.theme-default .header-address {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+.theme-default .header-bg-yellow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--accent-yellow);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 5;
+}
+
+.theme-default .header-bg-blue {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    background-color: var(--primary-blue);
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Align to right to avoid overlap */
+    padding-right: 40px;
+    padding-left: 0;
+}
+
+.theme-default .invoice-label {
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.theme-default .recipient-name {
+    color: var(--primary-blue);
+}
+
+.theme-default .meta-title {
+    color: var(--primary-blue);
+}
+
+.theme-default .invoice-table th {
+    background-color: var(--primary-purple);
+    color: var(--accent-yellow);
+    border: 1px solid white;
+}
+
+.theme-default .total-row {
+    background-color: var(--primary-purple);
+    color: var(--accent-yellow);
+}
+
+.theme-default .terms-box {
+    border: 2px solid var(--primary-blue);
+}
+
+.theme-default .bottom-bar {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 15px 40px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+
+/* =========================================
+   THEME: SIMPLE ELEGANT 1 (MINIMAL)
+   ========================================= */
+
+/* Hide Default Shapes */
+.theme-simple-1 .header-bg-purple,
+.theme-simple-1 .header-bg-yellow,
+.theme-simple-1 .header-bg-blue {
+    position: static;
+    clip-path: none;
+    background: none;
+    width: auto;
+    height: auto;
+    color: #000;
+}
+
+/* Reconstruct Header */
+.theme-simple-1 .header {
+    flex-direction: column;
+    height: auto;
+    padding: 40px 40px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.theme-simple-1 .header-bg-purple {
+    padding: 0;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.theme-simple-1 .header-title {
+    color: var(--primary-purple);
+    font-size: 28px;
+    letter-spacing: -0.5px;
+}
+
+.theme-simple-1 .header-address {
+    color: #555;
+}
+
+.theme-simple-1 .header-bg-yellow {
+    display: none;
+}
+
+.theme-simple-1 .header-bg-blue {
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    padding: 0;
+}
+
+/* Reconstruct Header - Ensure clean overrides */
+.theme-simple-1 .header {
+    flex-direction: column;
+    height: auto;
+    padding: 40px 40px 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-orange);
+    padding-bottom: 20px;
+}
+
+.theme-simple-1 .header-bg-purple {
+    padding: 0;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Font updates for Simple Themes */
+.theme-simple-1 {
+    font-family: 'Inter', sans-serif;
+}
+
+.theme-simple-1 .invoice-label {
+    color: var(--accent-orange);
+    font-size: 40px;
+    font-weight: 900;
+    /* Extra Bold */
+    text-transform: uppercase;
+}
+
+.theme-simple-1 .recipient-name {
+    color: var(--primary-purple);
+    font-size: 18px;
+}
+
+.theme-simple-1 .meta-title {
+    color: var(--accent-orange);
+    border-bottom: 1px solid var(--accent-orange);
+    padding-bottom: 5px;
+}
+
+.theme-simple-1 .invoice-table th {
+    background-color: white;
+    /* Clean look */
+    color: var(--primary-purple);
+    border-bottom: 2px solid var(--accent-orange);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.theme-simple-1 .total-row {
+    background-color: transparent;
+    color: var(--primary-purple);
+    border-bottom: 1px solid #eee;
+}
+
+.theme-simple-1 .total-row:last-child {
+    border-bottom: 2px solid var(--accent-orange);
+    font-size: 16px;
+    color: var(--accent-orange);
+}
+
+.theme-simple-1 .terms-box {
+    border: 1px solid #ddd;
+    border-left: 4px solid var(--primary-purple);
+    background-color: #fcfcfc;
+}
+
+.theme-simple-1 .bottom-bar {
+    border-top: 1px solid var(--accent-orange);
+    padding: 20px 40px;
+    color: var(--primary-purple);
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+    align-items: flex-end;
+}
+
+
+/* =========================================
+   THEME: SIMPLE ELEGANT 2 (MODERN ACCENT)
+   ========================================= */
+
+/* Hide Default Shapes */
+.theme-simple-2 .header-bg-purple,
+.theme-simple-2 .header-bg-yellow,
+.theme-simple-2 .header-bg-blue {
+    position: static;
+    clip-path: none;
+    width: auto;
+    height: auto;
+    background: none;
+}
+
+.theme-simple-2 .header {
+    background-color: var(--primary-purple);
+    /* Purple Header */
+    height: auto;
+    padding: 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theme-simple-2 .header-bg-purple {
+    background: transparent;
+    padding: 0;
+    color: white;
+    width: auto;
+}
+
+.theme-simple-2 .header-title {
+    color: white;
+    margin: 0;
+    font-size: 22px;
+}
+
+.theme-simple-2 .header-address {
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+}
+
+.theme-simple-2 .header-bg-yellow {
+    display: none;
+}
+
+.theme-simple-2 .header-bg-blue {
+    padding: 0;
+    display: block;
+    width: auto;
+}
+
+.theme-simple-2 {
+    font-family: 'Inter', sans-serif;
+}
+
+.theme-simple-2 .invoice-label {
+    color: var(--accent-orange);
+    /* Orange Accent */
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 900;
+    /* Extra Bold */
+}
+
+.theme-simple-2 .recipient-name {
+    color: var(--primary-purple);
+}
+
+.theme-simple-2 .meta-title {
+    color: var(--accent-orange);
+}
+
+.theme-simple-2 .invoice-table th {
+    background-color: var(--primary-purple);
+    color: white;
+    border-bottom: 3px solid var(--accent-orange);
+    /* Pop of Orange */
+    border-radius: 4px 4px 0 0;
+}
+
+.theme-simple-2 .invoice-table {
+    border-spacing: 0 5px;
+    border-collapse: separate;
+}
+
+.theme-simple-2 .total-row {
+    background-color: transparent;
+    color: var(--text-dark);
+    border-radius: 4px;
+}
+
+.theme-simple-2 .total-row:last-child {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 15px;
+    border-bottom: 4px solid var(--accent-orange);
+}
+
+.theme-simple-2 .terms-box {
+    border-left: 4px solid var(--accent-orange);
+    background-color: #f3f4f6;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.theme-simple-2 .bottom-bar {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}

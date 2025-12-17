@@ -1,0 +1,316 @@
+/* Main Layout - Centered Split View */
+.app-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+    background-color: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* Editor Panel Styling */
+.editor-panel {
+    width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    /* Sticky so it stays in view while scrolling preview if needed */
+    position: sticky;
+    top: 30px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #374151;
+}
+
+/* Invoice Preview Styling */
+.invoice-preview {
+    /* No margin-left needed anymore */
+    display: flex;
+    justify-content: center;
+    /* Ensure it doesn't shrink */
+    flex-shrink: 0;
+}
+
+/* Scrollbar styling */
+.editor-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.editor-panel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.editor-panel::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.editor-panel::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Headings */
+.editor-panel h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.editor-panel h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    font-weight: 600;
+    margin: 24px 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Top bar (Title + History Btn) */
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    position: sticky;
+    top: -30px;
+    /* Offset padding */
+    background: white;
+    z-index: 10;
+    padding: 10px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.editor-panel:hover .editor-header {
+    border-bottom-color: #f3f4f6;
+}
+
+.btn-history {
+    background-color: #ebf5ff;
+    color: #009fe3;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-history:hover {
+    background-color: #dbeafe;
+    color: #008ac5;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 13px;
+    color: #4b5563;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #fff;
+    color: #1f2937;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: #9ca3af;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #5e2a84;
+    box-shadow: 0 0 0 3px rgba(94, 42, 132, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Item Editor */
+.item-editor {
+    background: #f9fafb;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    position: relative;
+    transition: box-shadow 0.2s;
+}
+
+.item-editor:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item-row {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.btn-add {
+    width: 100%;
+    background: white;
+    border: 2px dashed #d1d5db;
+    color: #6b7280;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.btn-add:hover {
+    border-color: #5e2a84;
+    color: #5e2a84;
+    background: #fdfbff;
+}
+
+.btn-remove {
+    background: #fef2f2;
+    color: #ef4444;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 12px;
+    text-align: center;
+    border: 1px solid #fee2e2;
+    opacity: 1;
+    position: relative;
+}
+
+.btn-remove:hover {
+    background: #fee2e2;
+    border-color: #fecaca;
+    color: #b91c1c;
+}
+
+.btn-save {
+    background: #10b981;
+    /* Green */
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(16, 185, 129, 0.2);
+}
+
+.btn-save:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-print {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #5e2a84, #7c3aed);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(94, 42, 132, 0.3);
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-print:hover {
+    box-shadow: 0 6px 20px rgba(94, 42, 132, 0.4);
+    transform: translateY(-2px);
+}
+
+.print-controls {
+    padding-bottom: 40px;
+}
+
+/* File Input */
+input[type="file"] {
+    background: #f3f4f6;
+    padding: 8px;
+    font-size: 12px;
+}
+
+/* Responsive adjustments for editor */
+@media (max-width: 1200px) {
+    .app-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .editor-panel {
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
+        margin-bottom: 40px;
+    }
+
+    .invoice-preview {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media print {
+    .app-layout {
+        display: block;
+        padding: 0;
+        background: white;
+    }
+
+    .editor-panel {
+        display: none !important;
+    }
+
+    .invoice-preview {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+}

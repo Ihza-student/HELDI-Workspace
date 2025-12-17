@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* Landing/Login Theme Colors */
+  --landing-bg-dark: #2e1042;
+  /* Dark Purple */
+  --landing-card-dark: #3e1b54;
+  --landing-text-dark: #ffffff;
+  --landing-accent-dark: #fec200;
+  /* Yellow */
+
+  --landing-bg-light: #f3f4f6;
+  --landing-card-light: #ffffff;
+  --landing-text-light: #2e1042;
+  --landing-accent-light: #ff6b00;
+  /* Orange */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Login Styles */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--landing-bg-dark);
+  color: white;
+}
+
+.login-box {
+  background: var(--landing-card-dark);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--landing-accent-dark);
+}
+
+.login-box .form-group {
+  margin-bottom: 15px;
+}
+
+.login-box label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2a1236;
+  color: white;
+}
+
+.login-box .btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: var(--landing-accent-dark);
+  color: var(--landing-bg-dark);
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-box .btn-primary:hover {
+  opacity: 0.9;
+}
+
+.error-message {
+  background: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Landing Page Styles */
+.landing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.landing-container.theme-dark {
+  background-color: var(--landing-bg-dark);
+  color: var(--landing-text-dark);
+}
+
+.landing-container.theme-light {
+  background-color: var(--landing-bg-light);
+  color: var(--landing-text-light);
+}
+
+.landing-header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-dark .landing-header h1 {
+  color: var(--landing-accent-dark);
+}
+
+.theme-light .landing-header h1 {
+  color: var(--landing-accent-light);
+}
+
+.btn-theme-toggle {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.tools-grid {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  gap: 15px;
+}
+
+.theme-dark .tool-card {
+  background: var(--landing-card-dark);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .tool-card:hover {
+  background: #4a2066;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.theme-light .tool-card {
+  background: var(--landing-card-light);
+  color: var(--landing-text-light);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.theme-light .tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.tool-icon {
+  font-size: 48px;
+}
+
+.tool-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.landing-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  opacity: 0.7;
+}
