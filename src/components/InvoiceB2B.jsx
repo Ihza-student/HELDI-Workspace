@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import html2canvas from 'html2canvas'
 import { getRecipients, addRecipient, updateRecipient, saveInvoice, getSigners, addSigner, deleteSigner } from '../db'
 import InvoiceHistory from './InvoiceHistory'
 import '../EditorPanel.css'
@@ -373,8 +374,22 @@ function InvoiceB2B() {
                     <input value={data.contact.phone} onChange={e => handleNestedChange('contact', 'phone', e.target.value)} />
                 </div>
 
-                <div className="print-controls">
-                    <button onClick={handleSaveAndPrint} className="btn-print">Print & Save to History</button>
+                <div className="print-controls" style={{ display: 'flex', gap: '10px' }}>
+                    <button onClick={handleSaveAndPrint} className="btn-print" style={{ flex: 1 }}>
+                        Print / Download PDF
+                    </button>
+                    <button onClick={async () => {
+                        const element = document.querySelector('.invoice-container')
+                        if (element) {
+                            const canvas = await html2canvas(element, { scale: 2 })
+                            const link = document.createElement('a')
+                            link.download = `Invoice-${data.invoiceNumber}.png`
+                            link.href = canvas.toDataURL()
+                            link.click()
+                        }
+                    }} className="btn-print" style={{ flex: 1, backgroundColor: '#ff6b00' }}>
+                        Download PNG
+                    </button>
                 </div>
             </div>
 
